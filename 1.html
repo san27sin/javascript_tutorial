@@ -20,8 +20,18 @@
 Уточнение: пользователь всегда вводит корректное число.
 -->
 <script>
-  "use strict";  
-   
+  "use strict";
+  const answer = prompt("Введите температуру в градусах Цельсия:");
+  const tempC = Number.parseFloat(answer);
+   if(!isNaN(tempC))
+   {
+    const tempF = (9/5)*tempC+32;
+    document.write(`Цельсий: ${tempC}, Фаренгейт: ${tempF}`);
+   }
+   else
+   {
+    location.reload();
+   }   
 </script>
 </body>
 </html>
