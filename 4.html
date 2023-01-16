@@ -27,8 +27,28 @@
 -->
 <script>
   "use strict";
+  const number = prompt("Введите целое число:");
+  if(!isNaN(number))
+  {
+    const str = splitToDigits(number);   
+    const hundred = str[2] == undefined ? 0 : str[2];
+    const ten = str[1] == undefined ? 0 : str[1];
+    const one = str[0] == undefined ? 0 : str[0];
+    document.write(`сотен: ${hundred}, десятков: ${ten}, единиц: ${one}`);
+  }
+  else
+  {
+    location.reload();
+  }
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
+  function splitToDigits(number) {
+  var digits = [];
+  while (number) {
+    digits.push(number % 10);
+    number = Math.floor(number/10);
+  }
+  return digits;
+}
 </script>
 </body>
 </html>
