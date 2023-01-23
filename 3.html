@@ -24,16 +24,16 @@
   const a = parseInt(prompt("Введите число a: "));
   const b = parseInt(prompt("Введите число b: "));
 
-  if(isNaN(a) || isNaN(b)){
+  if (Number.isNaN(a) || Number.isNaN(b)) || a === 0 || b === 0 {
     location.reload();
   }
 
   
-  if(a > 0 && b > 0){
+  if (a > 0 && b > 0){
     alert(a-b);
-  }else if(a < 0 && b < 0){
-    alert(a*b);
-  }else{
+  } else if (a < 0 && b < 0){
+    alert(a * b);
+  } else {
     alert(a + b);
   }
   
