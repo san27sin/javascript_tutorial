@@ -39,25 +39,26 @@ Infinity делать не нужно, однако, в случае если б
     const b = parseInt(prompt("Введите число b: "));
     const c = prompt("Выберете операцию: ");
     mathOperation(a, b, c);
+    let answer;
 
 
 
     function mathOperation(arg1, arg2, operation) {
       switch (operation) {
         case '+':
-          alert(sum(arg1, arg2));
+          answer = sum(arg1, arg2);
           break;
 
         case '-':
-          alert(subtraction(arg1, arg2));
+          answer = subtraction(arg1, arg2);
           break;
 
         case '*':
-          alert(multiplication(arg1, arg2));
+          answer = multiplication(arg1, arg2);
           break;
 
         case '/':
-          alert(division(arg1, arg2));
+          answer = division(arg1, arg2);
           break;
 
         default:
@@ -70,11 +71,11 @@ Infinity делать не нужно, однако, в случае если б
 
 
 
-    function sum(x = 0, y = 0) {
+    function sum(x, y) {
       return x + y;
     }
 
-    function subtraction(x = 0, y = 0) {
+    function subtraction(x, y) {
       if (x > y) {
         return x - y;
       } else if (x < y) {
@@ -84,11 +85,11 @@ Infinity делать не нужно, однако, в случае если б
       }
     }
 
-    function multiplication(x = 0, y = 0) {
+    function multiplication(x, y) {
       return x * y;
     }
 
-    function division(x = 1, y = 1) {
+    function division(x, y) {
       if (x === 0 || y === 0) {
         return "На ноль делить нельзя!";
       }
