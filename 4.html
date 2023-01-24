@@ -65,13 +65,15 @@
   }
 
   function subtraction(x, y){
-    if(x > y){
+    if (x > y){
       return x - y;
-    }else if(x < y){
-      return y - x;
-    }else{
-      return 0;
     }
+    
+    if (x < y){
+      return y - x;
+    }
+    
+    return 0;    
   }
 
   function multiplication(x, y){
@@ -79,7 +81,7 @@
   }
 
   function division(x, y){
-    if(x === 0 || y === 0){
+    if (x === 0 || y === 0){
       return "На ноль делить нельзя!";
     }
     return x / y;
