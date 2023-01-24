@@ -7,18 +7,15 @@
 <body>
 <!--
 Необязательное задание.
-
 Необходимо реализовать функцию, которая будет принимать первым аргументом
 целое положительное число, в следующих трех аргументах функция принимает слова
 в разных склонениях.
 Функция должна возвращать одно из трех переданных в параметры слов подходящее
 под число, которое передано первым аргументом.
-
 Пример:
 console.log(declinationOfNumber(1, "яблоко", "яблока", "яблок")); // "яблоко"
 console.log(declinationOfNumber(2, "мяч", "мяча", "мячей")); // "мяча"
 console.log(declinationOfNumber(5, "стул", "стула", "стульев")); // "стульев"
-
 Функция должна работать с любым словом и любым целым положительным числом.
 Все аргументы, которые будут передаваться функции будут верны.
 -->
@@ -31,15 +28,21 @@ console.log(declinationOfNumber(5, "стул", "стула", "стульев"));
   const five = prompt("Введите слово пять ...");
 
   alert(`У меня есть ${count} ${declinationOfNumber(count, one, two, five)}.`);
-
+    
   function declinationOfNumber(count, one, two, five) {
-    if(count === 0 || count > 4){
-      return five;
-    }else if(count === 1){
-      return one;
-    }else{
-      return two;
+    if (String(count).length > 1){
+        count%=10;
     }
+    
+    if (count === 0 || count > 4){
+      return five;
+    }
+    
+    if (count === 1){
+      return one;
+    }
+    
+    return two;
   }
 
 </script>
