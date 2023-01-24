@@ -54,11 +54,17 @@
 
   }
 
-  function sum(x = 0, y = 0){
+  /**
+  *@description сумма 2 чисел
+  *@param {number} x - первое число
+  *@param {number} y - второе число
+  *@return {number} сумма чисел a и b
+  */
+  function sum(x, y){
     return x + y;
   }
 
-  function subtraction(x = 0, y = 0){
+  function subtraction(x, y){
     if(x > y){
       return x - y;
     }else if(x < y){
@@ -68,11 +74,11 @@
     }
   }
 
-  function multiplication(x = 0, y = 0){
+  function multiplication(x, y){
     return x * y;
   }
 
-  function division(x = 1, y = 1){
+  function division(x, y){
     if(x === 0 || y === 0){
       return "На ноль делить нельзя!";
     }
