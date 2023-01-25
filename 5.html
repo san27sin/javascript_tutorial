@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+
+<body>
+  <!--
+Обязательное задание.
+
+Необходимо скопировать и вставить в данный скрипт все функции из 4 задания.
+Необходимо реализовать функцию:
+mathOperation(arg1, arg2, operation);
+Параметры:
+arg1 - первое число.
+arg2 - второе число.
+operation - строка, которая содержит один символ из: "+", "-", "*", "/".
+Функция mathOperation должна вернуть результат операции, который был передан в
+параметр operation для двух первых аргументов (arg1 и arg2).
+Функция mathOperation должна использовать для вычисления функции из 4 задания.
+
+Примеры вызова функции:
+console.log(mathOperation(5, 3, "+")); // 8
+console.log(mathOperation(5, 3, ":)")); // NaN
+
+Функции mathOperation всегда передаются корректные числа, проверки на NaN,
+Infinity делать не нужно, однако, в случае если был передан некорректный
+аргумент в параметр operation, необходимо вернуть NaN.
+
+Необходимо для всех функций прописать комментарии jsdoc https://jsdoc.app/.
+-->
+  <script>
+    "use strict";
+
+
+    const a = parseInt(prompt("Введите число a: "));
+    const b = parseInt(prompt("Введите число b: "));
+    const c = prompt("Выберете операцию: ");
+    mathOperation(a, b, c);
+    let answer;
+
+
+
+    function mathOperation(arg1, arg2, operation) {
+      switch (operation) {
+        case '+':
+          answer = sum(arg1, arg2);
+          break;
+
+        case '-':
+          answer = subtraction(arg1, arg2);
+          break;
+
+        case '*':
+          answer = multiplication(arg1, arg2);
+          break;
+
+        case '/':
+          answer = division(arg1, arg2);
+          break;
+
+        default:
+          alert("Такой операции не существует!");
+          break;
+      }
+
+    }
+
+
+
+
+    function sum(x, y) {
+      return x + y;
+    }
+
+    function subtraction(x, y) {
+      if (x > y) {
+        return x - y;
+      } else if (x < y) {
+        return y - x;
+      } else {
+        return 0;
+      }
+    }
+
+    function multiplication(x, y) {
+      return x * y;
+    }
+
+    function division(x, y) {
+      if (x === 0 || y === 0) {
+        return "На ноль делить нельзя!";
+      }
+      return x / y;
+    }
+  </script>
+</body>
+
+</html>
