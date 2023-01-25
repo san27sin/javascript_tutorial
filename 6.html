@@ -23,13 +23,13 @@ xxxxx
 кавычки выводить не нужно.
 -->
 <script>
-  "use strict";
+"use strict";
 
-  for(let i = 0; i < 20; i++){
-    let b = 0, x = new String();
-    do{
-      x+='x';
-    }while(b++<i)
+  for (let i = 0; i < 20; i++) {
+    let b = 0, x = "";
+    do {
+      x += 'x';
+    } while (b++ < i)
     console.log(`${x}\n`);
   }
 </script>
