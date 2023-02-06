@@ -1,22 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Homework</title>
 </head>
+
 <body>
-<!--
-Обязательное задание.
+  <!--
+Необязательное задание, но желательно сделать.
 
-Необходимо создать переменную name, записать в эту переменную свое имя.
-Необходимо также создать переменную admin и присвоить этой переменной значение
-из переменной name.
-Вывести значение переменной admin в консоль.
+Необходимо данное задание выполнить в es5 стиле и в es6 стиле.
+Необходимо создать функцию-конструктор/класс для поста в социальной сети.
+Названия: `PostES5` для es5 стиля и `PostES6` для es6 стиля.
+Пост должен хранить:
+1. Автора поста (имени достаточно).
+2. Текст поста.
+3. Дату и время последнего изменения поста.
+Данные автора поста и текст поста необходимо передавать при создании
+экземпляра объекта.
+Каждому экземпляру объекта должен быть доступен метод `edit`, который будет
+менять текст поста.
+
+---
+
+Необходимо создать функцию-конструктор/класс для закрепленного поста в
+социальной сети.
+Названия: `AttachedPostES5` для es5 стиля и `AttachedPostES6` для es6 стиля.
+Закрепленный пост должен наследоваться от обычного поста.
+Данные автора поста и текст поста необходимо передавать при создании
+экземпляра объекта.
+Закрепленный пост должен иметь свойство `highlighted`, в котором по умолчанию
+будет лежать значение false (это свойство будет обозначать, будет ли наш
+закрепленный пост подсвечен).
+У экземпляров объекта закрепленного поста должен быть метод с названием
+`makeTextHighlighted`, который сделает так, чтобы наш пост стал подсвеченным
+(будет менять свойство `highlighted`).
+
+---
+
+Подсказки:
+1. Задание сложное, советую делать по аналогии с примером на онлайн-занятии.
+2. Обратите внимание что пост хранит "дату и время последнего изменения
+поста", это значит что если пост кто-то изменит (например вызовет какой-то
+метод, который изменит что-то в посте), дата и время последнего изменения
+поста также должна измениться.
+3. Выполняйте все по порядку, не стоит пытаться сделать все сразу, иначе можно
+что-нибудь пропустить.
+4. Если непонятно условие - задайте вопрос.
 -->
-<script>
-  "use strict";
+  <script>
+    "use strict";
+    //функция для задержки основного потока
+    function sleep(milliseconds) {
+      const date = Date.now();
+      let currentDate = null;
+      do {
+        currentDate = Date.now();
+      } while (currentDate - date < milliseconds);
+    }
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
-</script>
+
+    ///ES5/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    console.log("ProductES5")
+
+    function PostES5(auther, text) {
+      this._auther = auther;
+      this._text = text;
+      this._date = new Date();
+    }
+
+    PostES5.prototype.edit = function (text) {
+      this._text = text;
+      this._date = new Date();
+    }
+
+    PostES5.prototype.print = function () {
+      console.log(`Auther's name: ${this._auther}\n${this._text}\nDate changed:${this._date}\n\n`);
+    }
+
+    let postES5 = new PostES5("Alex", "В этой заметке я остановлюсь на том, ");
+
+    postES5.print();
+
+    sleep(2000);
+
+    postES5.edit("В этой заметке я остановлюсь на том, какими способами можно сгенерировать подобный псевдо-текст.");
+    postES5.print();
+
+    //создаем класс наследник
+    function AttachedPostES5(auther, text) {
+      PostES5.call(this, auther, text);
+      this._highlighted = false;
+    }
+
+    //вместо одного метода makeTextHighlighted сделал 2, чтобы была возможность отключить данную функцию
+    AttachedPostES5.prototype.turnOnTextHighlighted = function () {
+      this._highlighted = true;
+    };
+
+    AttachedPostES5.prototype.turnOffTextHighlighted = function () {
+      this._highlighted = false;
+    };
+
+    AttachedPostES5.prototype.printColorfully = function () {
+      if (this._highlighted) {
+        console.log(`%cAuther\'s name: ${this._auther}\n${this._text}\nDate changed:${this._date}\n\n`, 'color: yellow; background: #212529');
+      }
+      else {
+        //не сообразил как сделать виртуальный метод в ES5 и переопределить его в классе наследнике, подскажите как?
+        console.log(`Auther\'s name: ${this._auther}\n${this._text}\nDate changed:${this._date}\n\n`);
+      }
+    };
+
+    let attachedPostES5 = new AttachedPostES5("Pavel", "Дуб зеленый!");
+    attachedPostES5.printColorfully();
+    attachedPostES5.turnOnTextHighlighted();
+    attachedPostES5.printColorfully();
+    attachedPostES5.turnOffTextHighlighted();
+    attachedPostES5.printColorfully();
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    ///ES6/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    class PostES6 {
+      constructor(auther, text) {
+        this.auther = auther;
+        this.text = text;
+        this.date = new Date();
+      }
+
+      edit(text) {
+        this.text = text;
+        this.date = new Date();
+      }
+
+      print() {
+        console.log(`Auther's name: ${this.auther}\n${this.text}\nDate changed:${this.date}\n\n`)
+      }
+    }
+
+    let postES6 = new PostES6("Masha", "Ля-ля");
+    postES6.print();
+
+    postES6.edit("Ля-ля топаля");
+    sleep(3000);
+
+    postES6.print();
+
+    class AttachedPostES6 extends PostES6 {
+      highlighted = false;
+      turnOnTextHighlighted() {
+        this.highlighted = true;
+      }
+
+      turnOffTextHighlighted() {
+        this.highlighted = false;
+      }
+
+      print() {
+        if (this.highlighted) {
+          console.log(`%cAuther\'s name: ${this.auther}\n${this.text}\nDate changed:${this.date}\n\n`, 'color: yellow; background: #212529');
+        }
+        else {
+          super.print();
+        }
+      }
+    }
+
+    const attachedPostES6 = new AttachedPostES6("Хейтер", "Бу бу!");
+    attachedPostES6.print();
+    attachedPostES6.turnOnTextHighlighted();
+    attachedPostES6.print();
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  </script>
 </body>
+
 </html>
