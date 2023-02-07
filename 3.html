@@ -30,6 +30,7 @@
 -->
 <script>
   "use strict";
+
   class Numbers{
     constructor () {
       this.units = 0;
@@ -38,24 +39,23 @@
     }
   }
 
-  function getDigitsOfNumber (number) {
+  function getDigitsOfNumber(number) { //пробел не нужен после названия функции
     const digitsOfNumber = new Numbers();
 
-    if(number > 1000 || number < 0 || number % 1 != 0){
+    if (number > 1000 || number < 0 || number % 1 != 0) {
       console.error("Число не попадает в диапазон [0, 999] или является дробным");
-      return null;
+      return;
     }
     
-    if(number < 10){
+    if (number < 10) {
       digitsOfNumber.units = number
       return digitsOfNumber;
-    } 
-    else {
+    } else {
       digitsOfNumber.units = number % 10
     }
 
     
-    if(number < 100) {
+    if (number < 100) {
       digitsOfNumber.dozens = Math.floor(number * 0.1);
       return digitsOfNumber;
     }
@@ -64,13 +64,13 @@
     digitsOfNumber.hundreds = Math.floor(number * 0.01);
     return digitsOfNumber;   
   }
-
-  var answer_1 = getDigitsOfNumber(7);
-  var answer_2 = getDigitsOfNumber(57);
-  var answer_3 = getDigitsOfNumber(381);
-  var answer_4 = getDigitsOfNumber(-0.34);  
-  var answer_5 = getDigitsOfNumber(2381);
-  var answer_6 = getDigitsOfNumber(0.34);
+//var не любят писать в js
+  let answer_1 = getDigitsOfNumber(7);
+  let answer_2 = getDigitsOfNumber(57);
+  let answer_3 = getDigitsOfNumber(381);
+  let answer_4 = getDigitsOfNumber(-0.34);  
+  let answer_5 = getDigitsOfNumber(2381);
+  let answer_6 = getDigitsOfNumber(0.34);
 
   // Здесь пишем решение, данный комментарий необходимо стереть.
 </script>

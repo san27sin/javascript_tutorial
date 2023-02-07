@@ -19,6 +19,9 @@
 -->
 <script>
   "use strict";
+  //Ошибки:
+  //1) точку с запятой ставим после функции, если функцию мы присваиваем
+  
 
   //es5
   console.log("ProductES5")
@@ -31,7 +34,7 @@
     this.price *= 0.75;
   }
 
-  ProductES5.prototype.print= function () {
+  ProductES5.prototype.print = function () {
     console.log(`Имя ${this.name}; Цена ${this.price}`);
   }
 

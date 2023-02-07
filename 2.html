@@ -110,7 +110,9 @@
       }
       else {
         //не сообразил как сделать виртуальный метод в ES5 и переопределить его в классе наследнике, подскажите как?
-        console.log(`Auther\'s name: ${this._auther}\n${this._text}\nDate changed:${this._date}\n\n`);
+        //console.log(`Auther\'s name: ${this._auther}\n${this._text}\nDate changed:${this._date}\n\n`);
+        //Object.getPrototypeOf(this).print.call(this);
+        this.print();
       }
     };
 
