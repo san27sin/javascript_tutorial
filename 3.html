@@ -6,31 +6,140 @@
 </head>
 <body>
 <!--
-Обязательное задание.
-
-Необходимо вывести в консоль значения выражений:
-10 + 10 + "10"
-10 + "10" + 10
-10 + 10 + +"10"
-10 / -""
-10 / +"2,5"
-В этих выражениях нет опечаток, вам их нужно скопировать и вывести в консоль.
-
-Над каждым выводом в консоль необходимо объяснить почему мы получаем такой
-результат.
-
-Объяснения пишите в таком формате:
-/*
-1. 4 умножаем на 2 получаем 8.
-2. 3 минус 8 получаем -5.
-3. С помощью console.log выводим число -5 в консоль.
-*/
-console.log(3 - 4 * 2);
+Необязательное задание.
+Выполнить все задачи в теге script. Комментарии, в которых написаны задачи, не
+стирать, код с решением задачи пишем под комментарием.
 -->
+
+<p class="super_element">Привет</p>
+
+<img src="https://placeimg.com/50/50/animals" alt="">
+<img src="https://placeimg.com/50/50/arch" alt="">
+<img src="https://placeimg.com/50/50/nature" alt="">
+<img src="https://placeimg.com/50/50/people" alt="">
+<img src="https://placeimg.com/50/50/tech" alt="">
+<img src="https://placeimg.com/50/50/tech/grayscale" alt="">
+<img src="https://placeimg.com/50/50/tech/sepia" alt="">
+
+<br>
+
+<button>Кнопка</button>
+<button class="super_element">Кнопка с классом btn</button>
+<button>Кнопка</button>
+
+<br>
+
+<textarea></textarea>
+
+<br>
+
+<ul>
+  <li>
+    <button>Кнопка 1</button>
+  </li>
+  <li>
+    <button>Кнопка 2</button>
+  </li>
+  <li>
+    <button>Кнопка 3</button>
+  </li>
+  <li>
+    <button>Кнопка 4</button>
+  </li>
+</ul>
+
 <script>
   "use strict";
 
-  // Здесь пишем решение, данный комментарий необходимо стереть.
+  /*
+  1. Необходимо вывести сообщение в консоль "все теги прогрузились", когда все
+  теги будут созданы браузером.
+  */
+
+   document.addEventListener("DOMContentLoaded", () => {
+    console.log("все теги прогрузились!");
+   });
+
+  /*
+  2. Необходимо вывести сообщение в консоль "страница загрузилась", когда все
+  ресурсы страницы будут загружены.
+  */
+
+   window.onload = function() {
+    console.log("страница загрузилась")
+   };
+
+
+  /*
+  3. При клике на какой-либо тег на странице в консоль должно выводиться
+  сообщение наподобие:
+  Класс "super_element" присутствует в элементе "div".
+  сообщение должно определять присутствует или отсутствует класс "super_element"
+  у элемента, а также выводить в нижнем регистре верный тег в данной строке, по
+  которому был совершен клик.
+  Необходимо использовать делегирование.
+  */
+
+    const handler = function(event) {
+    event.stopPropagation();//это команда которая запрещает всплытие дальше
+    //event.stopImmediatePropagation();//это команда запрещает навесить второе событие
+    const el = event.target;
+    const clSE = "super_element";
+    if(el.classList.contains(`${clSE}`)) {
+      console.log(`Класс \"${clSE}\" присутствует в элементе \"${el.tagName}\"`)
+    } else {
+      console.log(`Класс \"${clSE}\" отсутствует в элементе \"${el.tagName}\"`)
+    }
+        
+    //alert(`event.target = ${event.target.tagName}, this = ${this.tagName}`);
+    //event.target.tagName - event.target хранит элемент событие с которым произошло
+    //this.tagName - хранится элемент который обрабатывается сейчас и он может меняться, может быть не целевым 
+  };
+
+  const els = document.querySelectorAll("*");
+
+  for (const el of els) {
+    el.addEventListener('click', handler);
+  }  
+
+  /*
+  4. Сделайте, чтобы при наведении на textarea в консоли появлялось сообщение:
+  "Вы навели на textarea."
+   */
+
+   const handlerTextArea = function(event) {
+    console.log("Вы навели на textarea");
+   }
+
+   const elsTextArea = document.querySelector("textarea");
+   elsTextArea.addEventListener('mouseover', () => console.log("Вы навели на textarea")); 
+    
+  /*
+  5. Необходимо повесить событие клика на тег ul. В обработчике события в
+  консоль необходимо выводить текст, который записан внутри элемента кнопки,
+  по которой был произведен клик.
+  Если клик был не по кнопке, то ничего выводить не нужно.
+  Необходимо использовать делегирование.
+   */
+
+   document.querySelectorAll('ul>li>button').forEach((el)=> el.addEventListener('click', (event) => console.log(`${event.target.innerText}`)));
+
+  /*
+  6. Вопрос: Почему в console.log пишется сначала текст из 5 задания и только
+  потом выводится текст из 3 задания, если мы кликаем по кнопкам в ul?
+  Ответ необходимо написать здесь же, под этим комментарием, своими словами.
+  */
+
+  //У меня это делается наоборот и связано это скорее со вложенностью элементов. 
+  //5 задание выходит первым потому что реагирует на первый вложенный элемент, так как 3 задание реагирует на последний глубокий вложенный элемент
+
+
+  /*
+  7. С помощью JS необходимо изменить цвет заднего фона каждого второго тега li.   
+   */
+
+   document.querySelectorAll('li:nth-child(even)').forEach((el)=>el.style.background = 'black');
+
 </script>
 </body>
 </html>
