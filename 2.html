@@ -33,20 +33,24 @@
   "super-dropdown", необходимо использовать методы forEach и querySelectorAll и
   свойство classList у элементов.
    */
-   document.querySelectorAll(".dropdown-item").forEach((el) => el.classList.add("super-dropdown"));
+   document.querySelectorAll(".dropdown-item")
+   .forEach((el) => el.classList.add("super-dropdown"));
 
   /*
   2. У элемента с классом btn необходимо убрать класс "btn-secondary", если он
   присутствует у этого элемента, либо добавить, если такого класса у элемента
   не было.
    */
-   let el = document.querySelector(".btn");
+   const el = document.querySelector(".btn");
+   //лучше использовать метод toggle для класса classList
 
-   if (el.classList.contains("btn-secondary")) {
-    el.classList.remove("btn-secondary")
-   } else {
-    el.classList.add("btn-secondary");
-   }
+   el.classList.toggle("btn-secondary"); //вместо длинного решения
+
+  //  if (el.classList.contains("btn-secondary")) {
+  //   el.classList.remove("btn-secondary");
+  //  } else {
+  //   el.classList.add("btn-secondary");
+  //  }
 
 
   /*
@@ -55,10 +59,11 @@
    */
 
    let elMenu = document.querySelector(".menu");
+   elMenu.classList.remove("dropdown-menu");// нет смысла проверять как внизу, если класса нет то ошибки не будет
 
-   if (elMenu.classList.contains("dropdown-menu")) {
-    elMenu.classList.remove("dropdown-menu");
-   }
+  //  if (elMenu.classList.contains("dropdown-menu")) {
+  //   elMenu.classList.remove("dropdown-menu");
+  //  }
 
   /*
   4. Используя метод insertAdjacentHTML добавьте после div'a с классом
@@ -66,7 +71,8 @@
     <a href="#">link</a>
    */
    let parentTag = document.querySelector("div.dropdown");
-   parentTag.insertAdjacentHTML("beforeend","<a href=\"#\">link</a>")
+   parentTag.insertAdjacentHTML("afterend",`<a href="#">link</a>`);// использовать `` что легче было прописывать спецсимволы
+  //  parentTag.insertAdjacentHTML("beforeend","<a href=\"#\">link</a>");
 
   /*
   5. У элемента с id "dropdownMenuButton" замените id на "superDropdown".
@@ -79,8 +85,10 @@
   атрибут "aria-labelledby" равный "dropdownMenuButton" используя dataset.
    */
 
-   let elAddTag = document.querySelector('[aria-labelledby="dropdownMenuButton"]');
-   elAddTag.setAttribute("data-dd","3");
+   document.querySelector('[aria-labelledby="dropdownMenuButton"]').dataset.dd = '3'; //используем dataset объект чтобы поставить новый атрибут, как бы создаем новое свойство
+
+  //  let elAddTag = document.querySelector('[aria-labelledby="dropdownMenuButton"]');
+  //  elAddTag.setAttribute("data-dd","3");
 
   /*
   7. Удалите атрибут type у элемента с классом "dropdown-toggle".
@@ -97,8 +105,7 @@
   let els = document.querySelector(".btn.dropdown-toggle");
   let attrs = els.attributes;
 
-  for (let a = 0; a < attrs.length; a++)
-  {
+  for (let a = 0; a < attrs.length; a++) { //открывающие скобки не переносим у цикла
     console.log(`Атрибут \"${attrs[a].name}\" содержит значение \"${attrs[a].value}\"`);
   }
 

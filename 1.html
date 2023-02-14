@@ -50,7 +50,7 @@
   2. Внутри всех элементов на странице, которые имеют класс "card-link",
   поменяйте текст внутри элемента на "ссылка".
    */
-   let arrEls = document.getElementsByClassName("card-link");
+   const arrEls = document.getElementsByClassName("card-link");//const нужен вместо let потому что не присваиваем больше другое значение
 
    for (let i = 0; i < arrEls.length; i++) {
     arrEls[i].textContent = "ссылка";
@@ -65,7 +65,7 @@
   4. Найти первый попавшийся элемент на странице у которого есть атрибут
   data-number со значением 50 и вывести его в консоль.
   */
-  let n50 = document.querySelector('[data-number="50"]');
+   const n50 = document.querySelector('[data-number="50"]'); //const нужен вместо let потому что не присваиваем больше другое значение
    console.log(n50);
 
   /*
@@ -77,8 +77,8 @@
   6. Получите элемент с классом "card-title" и выведите его родительский узел
   в консоль.
    */
-   let ct = document.querySelector(".card-title");
-   let parent = ct.parentNode;
+   const ct = document.querySelector(".card-title"); //const нужен вместо let потому что не присваиваем больше другое значение
+   const parent = ct.parentNode; //или .parentElement - одно и то же
    console.log(parent);
 
   /*
