@@ -69,8 +69,9 @@
     также должен меняться.
     */
 
+    const sp = document.querySelector("span");//чтобы каждый раз не вызывать функцию
     document.getElementById("from").addEventListener("input", event => {
-      document.querySelector("span").textContent = event.target.value;
+      sp.textContent = event.target.value;
     });
 
 
@@ -85,13 +86,10 @@
       const elMessage = document.querySelector(".message");
       const elMesListClass = elMessage.classList;
 
-      if (!elMesListClass.contains("animate_animated")) {
-        elMesListClass.add("animate_animated");
-      }
+      elMesListClass.add("animate__animated");//если класс есть, то он еще раз не добавиться
 
-      if (!elMesListClass.contains("animate__fadeInLeftBig")) {
-        elMesListClass.add("animate__fadeInLeftBig")
-      }
+      elMesListClass.add("animate__fadeInLeftBig")//если класс есть, то он еще раз не добавиться
+
       elMessage.style.visibility = 'visible';
     });
 
