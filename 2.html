@@ -82,6 +82,7 @@
     const productsEl = document.querySelector('.products');
     document.querySelector('header').addEventListener('click', event => {
       const product = products[event.target.dataset.type]
+      productsEl.innerHTML = "";
       for (let key in product) {
         productsEl.innerHTML += product[key].getProductMarkup();
       }
